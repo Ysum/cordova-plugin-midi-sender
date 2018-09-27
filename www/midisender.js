@@ -7,15 +7,15 @@ var MIDISender = function() {};
 
 /**
  * @param {number} channelNum 0-15 
- * @param {number} programNum 1-128
+ * @param {number} noteNum 1-128
  * @return {void}
  */
-MIDISender.sendProgramChange = function(channelNum, programNum) 
+MIDISender.sendNote = function(channelNum, noteNum) 
 {
-	// add 192 for the 192-207 program change range
+	// add 192 for the 192-207 note range
 	channelNum = parseInt(channelNum) + 192;
 
-    exec(function(){}, function(){}, "MIDISender", "sendProgramChange", [channelNum, programNum]);
+    exec(function(){}, function(){}, "MIDISender", "sendNote", [channelNum, noteNum]);
 };
 
 // -----

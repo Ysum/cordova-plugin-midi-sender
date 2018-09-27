@@ -45,8 +45,8 @@ NSString* receiveCallbackId;
                 // @debug
                 NSLog(@"MIDISender:midiReceive: status %d received", status);
                 
-                // program change
-                if(status >= 192 && status <= 207)
+                // note events
+                if(status >= 64 && status <= 159)
                 {
                     // @debug
                     NSLog(@"MIDISender:midiReceive: Program Change received: status %d on channel %d", packet->data[j + 1], status);
@@ -84,20 +84,20 @@ NSString* receiveCallbackId;
         NSLog(@"MIDISender:pluginInitialize: %lu MIDI destinations found", MIDIGetNumberOfDestinations());
     }
 
-    - (void)sendProgramChange:(CDVInvokedUrlCommand *)command
+    - (void)sendNote:(CDVInvokedUrlCommand *)command
     {
         // run as background thread
         [self.commandDelegate runInBackground:^{
     
             int channelNum = [[command.arguments objectAtIndex:0] intValue];
-            int programNum = [[command.arguments objectAtIndex:1] intValue];
+            int keyNum = [[command.arguments objectAtIndex:1] intValue];
             
             // Program Change
             // see: http://www.midi.org/techspecs/midimessages.php
             // Byte 1 - Channel #: 0xCn, n = channel number 0-F, channel 10 is represented by 0xCA
             // Byte 2 - Program #: 1-128
 
-            const Byte message[] = {channelNum, programNum};
+            const Byte message[] = {channelNum, keyNum};
 
             MIDIPacketList packetList;
             MIDIPacket *packet = MIDIPacketListInit(&packetList);
@@ -107,7 +107,7 @@ NSString* receiveCallbackId;
             for(int i = 0; i < destinationCount; i++)
             {
                 // @debug
-                NSLog(@"MIDISender:sendProgramChange: Sending status %d to channel %d at destination %d", programNum, channelNum, i);
+                NSLog(@"MIDISender:sendProgramChange: Sending status %d to channel %d at destination %d", keyNum, channelNum, i);
                 
                 MIDISend(outputPort, MIDIGetDestination(i), &packetList);
             }
