@@ -18,16 +18,16 @@ Methods
 -------
 
 	/**
-	 * Sends a program change to all connected devices
+	 * Sends a note to all connected devices
 	 * 
 	 * @param number channelNum
 	 * @param number statusData
 	 * @return void
 	 */
-	cordova.MIDISender.sendProgramChange(channelNum, statusData);
+	cordova.MIDISender.sendNote(channelNum, statusData);
 
 	/**
-	 * Listens for incoming program change message from all connected sources
+	 * Listens for incoming note message from all connected sources
 	 * 
 	 * @param function callback Is passed an object containing two properties {channel: <number>, data: <number>}
 	 * @return void

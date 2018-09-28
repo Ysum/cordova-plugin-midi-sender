@@ -49,7 +49,7 @@ NSString* receiveCallbackId;
                 if(status >= 64 && status <= 159)
                 {
                     // @debug
-                    NSLog(@"MIDISender:midiReceive: Program Change received: status %d on channel %d", packet->data[j + 1], status);
+                    NSLog(@"MIDISender:midiReceive: Note received: status %d on channel %d", packet->data[j + 1], status);
 
                     // Create an object with a simple success property.
                     NSDictionary *jsonObj = [
@@ -92,9 +92,11 @@ NSString* receiveCallbackId;
             int channelNum = [[command.arguments objectAtIndex:0] intValue];
             int keyNum = [[command.arguments objectAtIndex:1] intValue];
             
-            // Program Change
+            // TODO Fixme, nibble offset missing, just caring about midi in atm
+
+            // Note
             // see: http://www.midi.org/techspecs/midimessages.php
-            // Byte 1 - Channel #: 0xCn, n = channel number 0-F, channel 10 is represented by 0xCA
+            // Byte 1 - Channel #: 0xCn, n = channel number 0-F, channel 10 is represented by 0xCA 
             // Byte 2 - Program #: 1-128
 
             const Byte message[] = {channelNum, keyNum};

@@ -4,13 +4,13 @@
     "cordova_name": "MIDISender",
     "description": "MIDI Communication Plugin",
     "license": "Apache 2.0",
-    "repo": "https://github.com/jonathanwkelly/cordova-plugin-midi-sender.git",
-    "issue": "https://github.com/jonathanwkelly/cordova-plugin-midi-sender/issues",
+    "repo": "https://github.com/Ysum/cordova-plugin-midi-sender.git",
+    "issue": "https://github.com/Ysum/cordova-plugin-midi-sender.git/issues",
     "keywords": [
         "cordova",
         "MIDI",
-        "Program",
-        "Change",
+        "Note",
+        "Key",
         "CoreAudio"
     ],
     "platforms": [
