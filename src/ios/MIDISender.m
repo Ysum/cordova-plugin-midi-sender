@@ -22,7 +22,7 @@
 NSString* receiveCallbackId;
 
 @interface MIDISender()
-    -(void)sendProgramChange:(CDVInvokedUrlCommand *)command;
+    -(void)sendNote:(CDVInvokedUrlCommand *)command;
     -(void)getIncoming:(CDVInvokedUrlCommand *)command;
 @end
 
@@ -107,7 +107,7 @@ NSString* receiveCallbackId;
             for(int i = 0; i < destinationCount; i++)
             {
                 // @debug
-                NSLog(@"MIDISender:sendProgramChange: Sending status %d to channel %d at destination %d", keyNum, channelNum, i);
+                NSLog(@"MIDISender:sendNote: Sending status %d to channel %d at destination %d", keyNum, channelNum, i);
                 
                 MIDISend(outputPort, MIDIGetDestination(i), &packetList);
             }
